@@ -23,7 +23,7 @@ so that I have quick access to emails and GitHub profiles
 
 * Below is a link to the video demenstration of the running program:
 
-Video of running application can be found in the Images folder as well as the following link: (https://drive.google.com/file/d/1-CeAGMtBiG6A1sbTW0ZE3oz3niyquQTr/view)
+Video of running application can be found in the Images folder as well as the following link: (https://drive.google.com/file/d/10jQZyUGGiARaG9Iq1Fxs0IckVdYQfN8Z/view)
 
 The dependencies are, [jest](https://jestjs.io/) for running the provided tests, and [inquirer](https://www.npmjs.com/package/inquirer) for collecting input from the user.
 
