@@ -32,7 +32,7 @@ function init() {
             {
                 type: "input",
                 name: "managerID",
-                message: "What is your ID?",
+                message: "What is your employee ID?",
             },
             {
                 type: "input",
@@ -88,12 +88,12 @@ function init() {
             {
                 type: "input",
                 name: "engineerName",
-                message: "What is your Engineer's name?",
+                message: "What is your engineer's name?",
             },
             {
                 type: "input",
                 name: "engineerID",
-                message: "What is engineer's ID?",
+                message: "What is engineer's employee ID?",
             },
             {
                 type: "input",
@@ -124,7 +124,7 @@ function init() {
             {
                 type: "input",
                 name: "internID",
-                message: "What is your intern's ID?",
+                message: "What is your intern's employee ID?",
             },
             {
                 type: "input",
@@ -158,7 +158,7 @@ function init() {
         }
         fs.writeFileSync(outputPath, render(teamMembers), "utf-8");
         //success message for user to know their team was created
-        console.log("You team is complete!");
+        console.log("Your team is complete!");
     }
 
     //call manager function to initialize program to prompt user for manager questions
