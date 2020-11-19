@@ -79,7 +79,7 @@ team consists of a manager, and any number of engineers and interns. The user wi
 
 * Below is an example of what the terminal questions may look like while creating the team:
 
-![terminalQuestions](/Images/terminalScreenshot.png?raw=true)
+![terminalQuestions](/Images/terminalQuestionsSS.png?raw=true)
 
 ### Roster output
 
