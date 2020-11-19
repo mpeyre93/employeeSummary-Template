@@ -93,17 +93,17 @@ function init() {
             {
                 type: "input",
                 name: "engineerID",
-                message: "What is engineer's employee ID?",
+                message: "What is your engineer's employee ID?",
             },
             {
                 type: "input",
                 name: "engineerEmail",
-                message: "What is engineer's email?",
+                message: "What is your engineer's email?",
             },
             {
                 type: "input",
                 name: "engineerGit",
-                message: "What is engineer's GitHub username?",
+                message: "What is your engineer's GitHub username?",
             }
         ]).then(response => {
             //create and add engineer object from user responses
