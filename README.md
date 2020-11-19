@@ -32,7 +32,7 @@ The dependencies are, [jest](https://jestjs.io/) for running the provided tests,
 ![classtest screenshot](/Images/testScreenshot.png?raw=true)
 
 ### Classes
-The project containers the following classes: `Employee`, `Manager`, `Engineer`,
+The project contains the following classes: `Employee`, `Manager`, `Engineer`,
 `Intern`. The tests for these classes in the `tests` directory all pass.
 
 
