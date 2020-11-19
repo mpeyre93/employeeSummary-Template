@@ -10,21 +10,19 @@ const outputPath = path.join(OUTPUT_DIR, "team.html");
 
 const render = require("./lib/htmlRenderer");
 
+// use inquirer to gather information about the development team members,
+// and create objects for each team member
+// ===== START FUNCTION ===== 
 const teamMembers = [];
 const teamID = [];
-// Write code to use inquirer to gather information about the development team members,
-// and to create objects for each team member (using the correct classes as blueprints!)
-// ===== START FUNCTION ===== 
-
 
 //initialize program
 function init() {
     // Using inquirer to gather information about the development team members,
     // and to create objects for each team member
 
-    //function for user to input a manager for the team
-    function addManager() {
-        //questions specific to manager team member
+    //function for user to input a manager for the team and prompt specific questions for manager team member
+    function createManager() {
         inquirer.prompt([
             {
                 type: "input",
@@ -46,16 +44,16 @@ function init() {
                 name: "managerOfficeNumber",
                 message: "What is your office number?",
             }
-            //user input created into an object for manager
+            //create and add manager object from user responses
         ]).then(response => {
             const manager = new Manager(response.managerName, response.managerID, response.managerEmail, response.managerOfficeNumber);
             teamMembers.push(manager);
             teamID.push(response.managerID);
-            createTeam();
+            addTeamMember();
         });
     }
-    //create team function, questions based on role of employee input from user
-    function createTeam() {
+    //add team member function, questions based on role of employee input from user
+    function addTeamMember() {
         // prompt user for employee's role
         inquirer.prompt([
             {
@@ -70,13 +68,13 @@ function init() {
             }
         ]).then(userChoice => {
             switch (userChoice.memberRole) {
-                //if users selects the engineer then the addEngineer function is called for specific questions
+                //if users selects the engineer then the createEngineer function is called for specific questions
                 case "Engineer":
-                    addEngineer();
+                    createEngineer();
                     break;
-                //if users selects the intern then the addIntern function is called fpr specific questions
+                //if users selects the intern then the createIntern function is called fpr specific questions
                 case "Intern":
-                    addIntern();
+                    createIntern();
                     break;
                 default:
                     buildTeam();
@@ -84,8 +82,8 @@ function init() {
         });
     }
 
-    // add enginner and prompt user questions specific to engineer team member
-    function addEngineer() {
+    //create engineer and prompt user questions specific to engineer team member
+    function createEngineer() {
         inquirer.prompt([
             {
                 type: "input",
@@ -108,15 +106,15 @@ function init() {
                 message: "What is engineer's GitHub username?",
             }
         ]).then(response => {
-            // create Engineer object
+            //create and add engineer object from user responses
             const engineer = new Engineer(response.engineerName, response.engineerID, response.engineerEmail, response.engineerGit);
             teamMembers.push(engineer);
             teamID.push(response.engineerID);
-            createTeam();
+            addTeamMember();
         });
     }
-    //add intern and prompt users questions specific to intern team member
-    function addIntern() {
+    //create intern and prompt user questions specific to intern team member
+    function createIntern() {
         inquirer.prompt([
             {
                 type: "input",
@@ -139,11 +137,11 @@ function init() {
                 message: "What school is your intern attending?",
             }
         ]).then(response => {
-            // create object
+            //create and add intern object from user responses
             const intern = new Intern(response.internName, response.internID, response.internEmail, response.school);
             teamMembers.push(intern);
             teamID.push(response.internID);
-            createTeam();
+            addTeamMember();
         });
     }
 
@@ -159,11 +157,12 @@ function init() {
             fs.mkdirSync(OUTPUT_DIR)
         }
         fs.writeFileSync(outputPath, render(teamMembers), "utf-8");
+        //success message for user to know their team was created
         console.log("You team is complete!");
     }
 
     //call manager function to initialize program to prompt user for manager questions
-    addManager();
+    createManager();
 }
 
 //initialize program
