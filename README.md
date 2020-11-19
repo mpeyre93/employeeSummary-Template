@@ -3,7 +3,6 @@ This is a Node Command Line Application that takes in information from the user 
 Since testing is a key piece in making code maintainable, I have tested the program to ensure that all unit tests pass.
 
 The application will prompt the user for information about the team manager and then information about the team members. The user can input any number of team members, and they may be a mix of engineers and interns. When the user has completed building the team, the application will create an HTML file that displays a nicely formatted team roster based on the information provided by the user. 
-Following the [common templates for user stories](https://en.wikipedia.org/wiki/User_story#Common_templates), we can frame this challenge as follows:
 
 ## User-story
 ```
@@ -28,10 +27,15 @@ Video of running application can be found in the Images folder as well as the fo
 
 The dependencies are, [jest](https://jestjs.io/) for running the provided tests, and [inquirer](https://www.npmjs.com/package/inquirer) for collecting input from the user.
 
+* Below is a screenshot of all tests passing in terminal:
+
+![classtest screenshot](/Images/testScreenshot.png?raw=true)
+
 ### Classes
 The project containers the following classes: `Employee`, `Manager`, `Engineer`,
 `Intern`. The tests for these classes in the `tests` directory all pass.
-![classtest screenshot](/Images/testScreenshot.png?raw=true)
+
+
 
 The first class is an `Employee` parent class with the following properties and
 methods:
