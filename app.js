@@ -11,7 +11,7 @@ const outputPath = path.join(OUTPUT_DIR, "team.html");
 const render = require("./lib/htmlRenderer");
 
 const teamMembers = [];
-const teamArrayID = [];
+const teamID = [];
 // Write code to use inquirer to gather information about the development team members,
 // and to create objects for each team member (using the correct classes as blueprints!)
 // ===== START FUNCTION ===== 
@@ -50,18 +50,18 @@ function init() {
         ]).then(response => {
             const manager = new Manager(response.managerName, response.managerID, response.managerEmail, response.managerOfficeNumber);
             teamMembers.push(manager);
-            teamArrayID.push(response.managerID);
+            teamID.push(response.managerID);
             createTeam();
         });
     }
     //create team function, questions based on role of employee input from user
     function createTeam() {
-        // prompt for employee role
+        // prompt user for employee's role
         inquirer.prompt([
             {
                 type: "list",
                 name: "memberRole",
-                message: "What is the role of your team memeber?",
+                message: "What is the role of your team member?",
                 choices: [
                     "Engineer",
                     "Intern",
@@ -70,9 +70,11 @@ function init() {
             }
         ]).then(userChoice => {
             switch (userChoice.memberRole) {
+                //if users selects the engineer then the addEngineer function is called for specific questions
                 case "Engineer":
                     addEngineer();
                     break;
+                //if users selects the intern then the addIntern function is called fpr specific questions
                 case "Intern":
                     addIntern();
                     break;
@@ -82,9 +84,8 @@ function init() {
         });
     }
 
-    // add Engineer function
+    // add enginner and prompt user questions specific to engineer team member
     function addEngineer() {
-        // prompt questions about engineer
         inquirer.prompt([
             {
                 type: "input",
@@ -110,11 +111,11 @@ function init() {
             // create Engineer object
             const engineer = new Engineer(response.engineerName, response.engineerID, response.engineerEmail, response.engineerGit);
             teamMembers.push(engineer);
-            teamArrayID.push(response.engineerID);
+            teamID.push(response.engineerID);
             createTeam();
         });
     }
-    //add intern and prompt users of specific questions
+    //add intern and prompt users questions specific to intern team member
     function addIntern() {
         inquirer.prompt([
             {
@@ -141,23 +142,24 @@ function init() {
             // create object
             const intern = new Intern(response.internName, response.internID, response.internEmail, response.school);
             teamMembers.push(intern);
-            teamArrayID.push(response.internID);
+            teamID.push(response.internID);
             createTeam();
         });
     }
 
-    // After the user has input all employees desired, call the `render` function (required
-    // above) and pass in an array containing all employee objects; the `render` function will
-    // generate and return a block of HTML including templated divs for each employee
+    //After the user has input all employees desired, call the `render` function
+    //pass in an array containing all employee objects; the `render` function will
+    //generate and return a block of HTML including templated divs for each employee
 
-    // After you have your html, you're now ready to create an HTML file using the HTML
-    // returned from the `render` function. Now write it to a file named `team.html` in the
-    // `output` folder. You can use the variable `outputPath` above to target this location.
+    //After you have your html, create an HTML file using the HTML
+    //returned from the `render` function. Write it to a file named `team.html` in the
+    //`output` folder, using the variable `outputPath` to target this location.
     function buildTeam() {
         if (!fs.existsSync(OUTPUT_DIR)) {
             fs.mkdirSync(OUTPUT_DIR)
         }
         fs.writeFileSync(outputPath, render(teamMembers), "utf-8");
+        console.log("You team is complete!");
     }
 
     //call manager function to initialize program to prompt user for manager questions
